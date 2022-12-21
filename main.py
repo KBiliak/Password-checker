@@ -8,27 +8,29 @@ while True:
     with open("password.txt", "w") as file:
         content1 = file.writelines(content)
 
-    length = len(password_input)
-    result = []
-    if length >= 8:
-        result.append(True)
+    result = {}
+    if len(password_input) >= 8:
+        result["length"] = True
     else:
-        result.append(False)
+        result["length"] = False
 
     digit = False
     for i in password_input:
         if i.isdigit():
-            digit = True
+           digit = True
 
-    result.append(digit)
+    result["digits"] = digit
 
     uppercase = False
     for i in password_input:
         if i.isupper():
             uppercase = True
-    result.append(uppercase)
+    result["upper-case"] = uppercase
 
-    if all(result):
+    print(result)
+    print(result.values())
+
+    if all(result.values()):
         print("Strong Password")
     else:
         print("Weak Password")
